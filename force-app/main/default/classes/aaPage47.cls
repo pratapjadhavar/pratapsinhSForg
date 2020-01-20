@@ -5,4 +5,6 @@ public class aaPage47 {
     public aaPage47(){
         aa=[select id, name from account limit 1];
     } 
+
+    //my new changes in the class aa
 }
