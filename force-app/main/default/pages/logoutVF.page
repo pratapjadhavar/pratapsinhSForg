@@ -1,0 +1,11 @@
+<apex:page showHeader="false" standardStylesheets="false" lightningStylesheets="true"  >
+   
+    <script>
+    function logoutNow(){
+        var win = window.open('../secur/logout.jsp', '_parent');
+      
+            setTimeout(function(){ win.close(); }, 2000);
+        }
+    </script>
+    <input id="Logout Now" type="button" value="clickme" onclick="logoutNow();" />
+</apex:page>

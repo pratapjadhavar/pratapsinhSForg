@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+ 
+<aura:attribute name="con" type="Contact[]" />
+ 
+<!--Registration of event to pass the selected result back to Parent component-->
+<aura:registerEvent name="myEvent" type="c:selectedContactEvent" />
+ 
+<!-- Table showing searched result-->
+<tr class="slds-truncate">
+<td class="slds-truncate" title="{!v.con.LastName }">
+<a onclick="{!c.selectContact}">{!v.con.Name } {!v.con.LastName }</a></td>
+<td class="slds-truncate" title="{!v.con.Account.Name}">{!v.con.Account.Name}</td>
+<td class="slds-truncate" title="{!v.con.Email}">{!v.con.Email}</td>
+<td class="slds-truncate" title="{!v.con.Phone}">{!v.con.Phone}</td>
+</tr>
+</aura:component>

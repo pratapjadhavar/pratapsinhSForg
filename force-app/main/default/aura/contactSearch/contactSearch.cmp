@@ -1,0 +1,8 @@
+<aura:component controller="ContactSearchController">
+    <aura:registerEvent name="contactSearchComplete" type="c:contactSearchCompleteEvent"/>
+
+    <div class="searchInput">
+    	<ui:inputText label="Term" aura:id="searchTerm" value="" placeholder="Enter term" />
+    </div>
+    <ui:button label="Search" press="{!c.doSearch}" class="action-button" />
+</aura:component>

@@ -2,7 +2,23 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "c/helloWorld": [
+                "helloWorld/helloWorld.js"
+            ],
+            "c/askQuestionLWC": [
+                "askQuestionLWC/askQuestionLWC.js"
+            ],
+            "c/articleFeedbackLWC": [
+                "articleFeedbackLWC/articleFeedbackLWC.js"
+            ],
+            "c/webToLeadLWC": [
+                "webToLeadLWC/webToLeadLWC.js"
+            ],
+            "c/communityFooterLWC": [
+                "communityFooterLWC/communityFooterLWC.js"
+            ]
+        }
     },
     "include": [
         "**/*",

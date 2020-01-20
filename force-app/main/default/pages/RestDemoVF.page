@@ -1,0 +1,14 @@
+<apex:page controller="RestDemoAccessAPI" lightningStylesheets="true" >
+    <br/> <br/><center>
+    <strong>callout Demo: calling Webservice from one Org To Other SF Org.</strong>
+    <br/> <br/>
+    
+     <apex:form >Enter Project Name : 
+    <apex:inputText label="project Name: " value="{!prjNamevalvf}"/> <br/><br/>
+         <apex:commandButton value="carete project" action="{!callRestNowGetData}"/>
+         <br/>
+         <br/>
+         <apex:outputText title="Response:::" label="Response:::" value="{!reposneid}"></apex:outputText>
+    </apex:form>
+    </center>
+</apex:page>

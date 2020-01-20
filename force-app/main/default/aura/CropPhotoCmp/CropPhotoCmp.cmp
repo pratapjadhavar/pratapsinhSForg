@@ -1,0 +1,3 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,force:lightningQuickAction" access="global">
+    <iframe src="{!'https://pratapsinh-dev-ed--c.ap7.visual.force.com/apex/FileUploadSimple'}" width="600px" height="600px;" frameBorder="0"/>
+</aura:component>

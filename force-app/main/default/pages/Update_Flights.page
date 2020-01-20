@@ -1,0 +1,60 @@
+<apex:page StandardController="Scheduled_Flights__c" tabStyle="Flight__c"  recordSetVar="flights1" showHeader="false" sidebar="false">
+<apex:pageBlock >
+<apex:sectionHeader subtitle="Update Flight Schedule Information"/>
+<apex:form >
+<apex:pageBlockTable value="{!flights1}" var="fli">
+
+        <apex:column >
+             <apex:facet name="header">Name</apex:facet>
+            <apex:OutputField value="{!fli.Flight__c}"></apex:OutputField>
+        </apex:column>
+
+        <apex:column >
+             <apex:facet name="header">From</apex:facet>
+            <apex:InputField value="{!fli.From__c}"></apex:InputField>
+        </apex:column>
+        
+         <apex:column >
+             <apex:facet name="header">To</apex:facet>
+            <apex:InputField value="{!fli.To__c}"></apex:InputField>
+        </apex:column>
+        
+        <apex:column >
+             <apex:facet name="header">Departure Date</apex:facet>
+            <apex:InputField value="{!fli.Departure__c}"></apex:InputField>
+        </apex:column>
+        
+        <apex:column >
+             <apex:facet name="header">Departure Time</apex:facet>
+            <apex:InputField value="{!fli.Time_of_Departure__c}"></apex:InputField>
+        </apex:column>
+        
+        <apex:column >
+             <apex:facet name="header">Remaining Seats</apex:facet>
+            <apex:InputField value="{!fli.Remaining_Seats__c}"></apex:InputField>
+        </apex:column>
+        
+        <apex:column >
+             <apex:facet name="header">Toatal Seats</apex:facet>
+            <apex:InputField value="{!fli.Total_Seats__c}"></apex:InputField>
+        </apex:column>
+        
+        <apex:column >
+             <apex:facet name="header">Flight Attendant</apex:facet>
+            <apex:InputField value="{!fli.Flight_Attendant__c}"></apex:InputField>
+        </apex:column>
+        
+        <apex:column >
+             <apex:facet name="header">Action</apex:facet>
+              <apex:commandButton value="Save" action="{!save}"/>
+
+        </apex:column>
+
+
+</apex:pageBlockTable>
+ 
+</apex:form>
+</apex:pageBlock>
+
+  
+</apex:page>

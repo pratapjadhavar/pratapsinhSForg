@@ -1,0 +1,15 @@
+<aura:component >
+
+<aura:attribute name="message" type="String" description="" default="good afternoon..!"/>
+<ui:button label="hi my 1st interactive comp" press="{!c.handleClick}"/>
+<ui:outputText value="{!v.message}"/>
+
+
+
+<aura:attribute name="item" type="Camping_Item__c" required="true"/>
+	<p><ui:outputText value="{!v.item.Name}"/></p>
+	<p><ui:outputCurrency value="{!v.item.Price__c}"/></p>
+	<p><ui:outputNumber value="{!v.item.Quantity__c}"/></p>
+	<p><ui:outputCheckbox value="{!v.item.Packed__c}"/></p>
+	<ui:button label="packed" press="{!c.handleClick2}"/>
+</aura:component>

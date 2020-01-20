@@ -1,0 +1,58 @@
+<apex:page Controller="DataTableExampleController" readOnly="true">
+    <apex:slds />
+    <head>
+        
+        <apex:includescript value="//code.jquery.com/jquery-1.11.1.min.js" / >
+        <apex:includescript value="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" />
+        <apex:stylesheet value="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" />
+        <script>
+            j$ = jQuery.noConflict();
+            j$(document).ready( function () {
+                var contactTable = j$('[id$="contacttable"]').DataTable({
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="demo-only" style="max-width: 320px;">
+  <div class="slds-form-element">
+    <span class="slds-form-element__label" id="file-selector-primary-label">Attachment</span>
+    <div class="slds-form-element__control">
+      <div class="slds-file-selector slds-file-selector_images">
+        <div class="slds-file-selector__dropzone">
+          <input class="slds-file-selector__input slds-assistive-text" accept="image/png" type="file" id="file-upload-input-01" aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+          <label class="slds-file-selector__body" for="file-upload-input-01" id="file-selector-secondary-label">
+            <span class="slds-file-selector__button slds-button slds-button_brand">
+              <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#upload" />
+              </svg>Upload File</span>
+            <span class="slds-file-selector__text slds-medium-show">or Drop Image</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <table id="contacttable" class="display">
+            <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!contactList}" var="contact">
+                    <tr>
+                        <td>{!contact.Account.Name}</td>
+                        <td>{!contact.FirstName}</td>
+                        <td>{!contact.LastName}</td>
+                        <td>{!contact.Phone}</td>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+    </body>
+
+</apex:page>

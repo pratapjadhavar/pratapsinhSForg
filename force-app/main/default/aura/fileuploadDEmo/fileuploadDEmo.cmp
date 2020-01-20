@@ -1,0 +1,32 @@
+<aura:component implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:hasRecordId" access="global" >
+    <aura:attribute name="myRecordId" type="String" default="a0D0I00000wWQWC" description="Record to which the files should be attached" />
+   <aura:attribute name="objOpportunity" type="Opportunity" access="global" default="{'sobjectType': 'Opportunity',
+                                                                                      'Name': '',
+                                                                                      'AccountId':'',
+                                                                                      'StageName':'',
+                                                                                      'CloseDate':'',
+                                                                                      }"/>
+    <aura:attribute name="uploadedId" type="String"/>
+     <lightning:card>
+         <force:inputField aura:id="accountid" 
+                 value="{!v.objOpportunity.AccountId}"/>
+        <aura:set attribute="title">
+            <lightning:icon iconName="utility:connected_apps" size="small"/>
+           EverSign Create document
+        </aura:set>
+          <aura:set attribute="actions">
+             <lightning:button variant="brand" label="Create Document" title="Create Document" onclick="{! c.handleClick }" />
+        	</aura:set>
+       <aura:set attribute="footer">
+               <lightning:fileUpload label="Attach receipt"
+                name="fileUploader"
+                multiple="true"
+                accept=".pdf,.jpg, .png"
+                recordId="{!v.myRecordId}"
+                onuploadfinished="{!c.handleUploadFinished}" />
+           <aura:renderIf isTrue="{!v.uploadedId!=null}">
+                <lightning:fileCard fileId="{!v.uploadedId}" description="Sample Description"/>
+           </aura:renderIf>
+      </aura:set>     
+    </lightning:card>
+</aura:component>

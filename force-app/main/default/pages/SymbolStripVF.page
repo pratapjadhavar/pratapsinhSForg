@@ -1,0 +1,116 @@
+<apex:page >
+    <head>
+        <title>Basic Demo</title>
+      
+        <style>
+            .editor-btn {
+            opacity: 0;
+            width: 0px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.16, rgb(207, 207, 207)), color-stop(0.79, rgb(252, 252, 252)));
+            background-image: -moz-linear-gradient(center bottom, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%);
+            background-image: linear-gradient(to top, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%); 
+            padding: 3px;
+            border: 1px solid #ccc;
+            color: black;
+            text-decoration: none;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 5px 0;
+            
+            }
+            .editor-btn button {
+            cursor:pointer;
+            }
+            .active {
+            opacity: 1;
+            transition: all 0.3s ease 0s;
+            width: 300px;
+            
+            }
+            .editor-btn:hover {
+            opacity: 1;
+            transition: all 0.3s ease 0s;
+            width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <textarea rows="4" cols="50" class="editor" id="your-input-id11" val="" onblur="lastSelected=this.id;"/>
+      
+        <div class="editor-btn">
+            Insert symbol
+            <button class="number-button" value="&">&amp;</button>
+            <button class="number-button" value="?">&isin;</button>
+            <button class="number-button" value="?">&ni;</button>
+            <button class="number-button" value="?">&prod;</button>
+            <button class="number-button" value="?">&sum;</button>
+            <button class="number-button" value="-">&minus;</button>
+            <button class="number-button" value="*">&lowast;</button>
+            <button class="number-button" value="8">&infin;</button>
+        </div>
+        <fieldset>
+	
+	
+         <textarea rows="4" cols="50" class="editor" id="your-input-id22" val="" onblur="lastSelected=this.id;"/>
+        </fieldset>
+        <p>&#8734; 
+&#963;
+&#945;
+&#956;
+&#954;
+&#931; 
+&#948; 
+&#955;
+&#8594; 
+&#8593;
+&#8592;
+&#8595;
+     &#176;       
+
+
+
+</p>
+        
+        
+        
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            
+            var lastSelected;
+        console.log('aaa'+lastSelected);
+            //var input = document.querySelector(".editor")
+            var buttons = document.querySelectorAll("button.number-button")
+           
+        
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener("click", function(event) {
+            
+               
+                var editor = document.getElementById(lastSelected);
+                console.log('dd==>'+editor.id);
+                var char = event.currentTarget.value;
+                console.log('char'+char);
+                
+                editor.value = editor.value + char;
+                
+            })
+        }
+        $('.editor').focusin(function (e) {
+            $('.editor-btn').addClass('active');
+        });
+        /*$('.editor-btn').focusin(function (e) {
+            $(this).addClass('active');
+        });*/
+        $('.editor').focusout(function (e) {
+            $('.editor-btn').removeClass('active');
+        });
+        /*$('.editor-btn').focusout(function (e) {
+            $(this).removeClass('active');
+        });*/
+        </script>
+    </body>
+</apex:page>

@@ -1,0 +1,91 @@
+<template>
+    <div class="page-section page-header slds-align--absolute-center">
+        <h1 class="slds-text-heading--medium">Contact Datacolada Support</h1>
+    </div><br/>
+
+    <template if:true={showInputForm}>
+    <lightning-record-edit-form object-api-name="Lead">
+        <lightning-messages>
+        </lightning-messages>
+        <lightning-input-field field-name="FirstName" value={leadRecord.FirstName} onchange={handleFieldChange}>
+        </lightning-input-field>
+        <lightning-input-field field-name="LastName" value={leadRecord.LastName} onchange={handleFieldChange}>
+        </lightning-input-field>
+        
+        <lightning-input-field field-name="Company"  value={leadRecord.Company} onchange={handleFieldChange}>
+        </lightning-input-field>
+        <lightning-input-field field-name="Phone"  value={leadRecord.Phone} onchange={handleFieldChange}>
+        </lightning-input-field>
+        <lightning-input-field required field-name="Email"  value={leadRecord.Email} onchange={handleFieldChange}>
+        </lightning-input-field>
+        <lightning-input-field field-name="Description"  value={leadRecord.Description} onchange={handleFieldChange}>
+        </lightning-input-field>
+        
+        <lightning-button class="slds-m-top--medium slds-align--absolute-center"
+                          variant="brand"
+                          name="save"
+                          label="Next"
+                          type="submit"
+                          onclick={saveTempForm}
+                          >
+        </lightning-button>
+    </lightning-record-edit-form>
+</template>
+<template if:true={showConfirmForm}>
+    <br/>
+    <h3 class="slds-text-heading--small">Review your details below</h3><br/>
+    <label for="fstname">First Name: </label>
+    <lightning-formatted-text id="fstname"  value={leadRecord.FirstName}></lightning-formatted-text>
+    <br/>
+    <label for="lstname">Last Name: </label>
+    <lightning-formatted-text id="lstname"  value={leadRecord.LastName}></lightning-formatted-text>
+    <br/>
+    <label for="emailid">Email:  </label>
+    <lightning-formatted-text id="emailid"  value={leadRecord.Email}></lightning-formatted-text>
+    <br/>
+    <label for="cmpny">Company: </label>
+    <lightning-formatted-text id="cmpny"  value={leadRecord.Company}></lightning-formatted-text>
+    <br/>
+    <label for="phone">Phone </label>
+    <lightning-formatted-text id="phone"  value={leadRecord.Phone}></lightning-formatted-text>
+    <br/>
+    <label for="descp">Description:  </label>
+    <lightning-formatted-text id="descp"  value={leadRecord.Description}></lightning-formatted-text>
+    <br/>
+    <div class="slds-clearfix">
+        <div class="slds-float_left">
+            <lightning-button class="slds-m-top--medium slds-align--absolute-center"
+                                  variant="brand"
+                                  name="back"
+                                  label="Back"
+                                  onclick={navBack}
+                                  >
+            </lightning-button>
+        </div>
+        <div  class="slds-float_right">
+            <lightning-button disabled={confirmBtnDisabled} class="slds-m-top--medium slds-align--absolute-center"
+                                variant="brand"
+                                name="save"
+                                label="Submit"
+                                onclick={saveForm}
+                                >
+            </lightning-button>
+        </div>
+        </div>
+    <br/>
+    <div class="slds-m-top--medium slds-align--absolute-center">
+        <iframe src="../apex/RecaptchaVF" name="captchaFrame" onload={captchaLoaded} width="400" height="350" style="border:0px solid white"></iframe>
+    </div>
+   
+   
+</template>
+
+<template if:true={showThanksMsg}>
+    <br/>
+    <div class="page-section page-header slds-align--absolute-center slds-text-heading_small">
+    Thanks for contacting us. We will get back to you shortly.<br/><br/><br/><br/>
+    </div>
+  
+</template>
+
+</template>

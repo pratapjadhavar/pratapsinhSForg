@@ -1,0 +1,53 @@
+<template>
+   
+    <div class="slds-theme_default">
+        <div class="slds-p-around_medium">
+          
+                <button type="button" class="slds-button slds-button_brand" style="
+                  
+                    border-style: solid;
+                    padding: 5px 24px;
+                    min-width: 21rem;
+                    border-radius: 0px;" onclick={handleOpenModal}>Ask A Question</button>
+          
+        </div>
+        <template if:true={isOpenModal}>
+            <div style="height: 500px;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <template if:false={loaded}>
+                        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                    </template>
+                   
+                    <div class="slds-modal__container">
+                        
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <div class="slds-text-heading_small">
+                               <label class="slds-form-element__label" for="select-01">
+                                <abbr class="slds-required" title="required">* </abbr>Post To</label>
+                                <select required id="select-01" class="slds-select" 
+                                onchange={selectionChangeHandler}>
+                                    <option value="Choose...">Choose...</option>
+                                    <template for:each={options} for:item="option">
+                                        <option key={option.label} class="uiInputSelectOption" value={option.value}>{option.label}</option>
+                                    </template>
+                                </select><br/> <br/>
+                                <lightning-textarea required name="Question" label="Question" placeholder="What would you like to know?" onchange={questionChangehandler} ></lightning-textarea>
+                                <br/>
+                            </div>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <div class="slds-clearfix">
+                                <div class="slds-float_right">
+                                    <lightning-button label="Cancel" variant="neutral" onclick={handleCloseModal}></lightning-button>
+                                    <lightning-button disabled={disableAskBtn} type="submit" onclick={handleSave} class="slds-p-left_x-small" label="Ask" variant="brand"></lightning-button>
+                                </div>
+                            </div>
+                         
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+        </template>
+    </div>
+   </template>

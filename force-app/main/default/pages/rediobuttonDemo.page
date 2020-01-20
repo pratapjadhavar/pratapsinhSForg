@@ -1,0 +1,23 @@
+<apex:page controller="radioButtons" showHeader="false">  
+ <Apex:form >  
+ <script>  
+ function myFunction( val){  
+ var x = val.value;  
+ callfunc(x);  
+ }  
+ </script>  
+
+  <apex:actionFunction name="callfunc" action="{!addaction}" reRender="text">  
+  <apex:param value="" name="number"/>  
+  </apex:actionFunction>  
+
+  <apex:selectRadio value="{!SelectedValue}" onclick="myFunction(this);" >  
+   <apex:selectOptions value="{!items}" />  
+  </apex:selectRadio>  
+
+
+  <Apex:pageblock >  
+  <font size="4">Result : <apex:outputText id="text" value="{!num}"> </apex:outputText></font>  
+  </Apex:pageblock>  
+ </Apex:form>  
+ </apex:page>

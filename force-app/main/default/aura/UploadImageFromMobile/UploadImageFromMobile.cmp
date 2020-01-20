@@ -1,0 +1,29 @@
+<aura:component controller="UploadImageFromMobile" implements="force:lightningQuickActionWithoutHeader,flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    <aura:attribute name="recordId" type="Id"  />
+    <aura:attribute name="attachFile" type="object"  />
+    <aura:attribute name="loading" type="Boolean" default="false" />
+    <ltng:require scripts="{!join(',', 
+                           $Resource.image_rotate + '/load-image/load-image.all.min.js', 
+                           $Resource.image_rotate + '/load-image/load-image-exif.js')}" />
+    
+
+    <div>
+        <lightning:notificationsLibrary aura:id="notifLib"/>
+        <aura:if isTrue="{! v.loading }">
+            <lightning:spinner alternativeText="Loading" />
+        </aura:if>
+        <center>
+            <lightning:button variant="brand" label="Save" onclick="{!c.save}"/>
+        	<lightning:button label="Cancel" onclick="{!c.cancel}"/>
+        </center>
+        <br/>
+        Mobile upload rotation issue and without compress Image: 
+        <lightning:input name="file1" type="file" label="Attachment" multiple="false" 
+             accept="image/png," onchange="{! c.onFileUploaded }"/>
+        
+        <br/><br/>
+        Mobile upload rotation issue fixed and with compress Image:
+        <lightning:input name="file2" type="file" label="Attachment" multiple="false" 
+              accept="image/png," onchange="{! c.onFileRotationAndCompress }"/>
+    </div>
+</aura:component>

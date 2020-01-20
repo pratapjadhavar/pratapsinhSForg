@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Set Time for Batch" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Reference Field" onchange={handleNameChange} value={referenceField}></lightning-input>
+            <lightning-input type="datetime" onchange={handleNameChange} label="From" value={fromVal}></lightning-input>
+            <lightning-input type="datetime" onchange={handleNameChange} label="To" value={toval}></lightning-input>
+            <lightning-button label="Save" onclick={updateRec} variant="brand" ></lightning-button>
+        </div>
+    </lightning-card>
+</template>

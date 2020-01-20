@@ -1,0 +1,37 @@
+<template>
+        <div class="slds-box slds-box_small  lgc-bg">
+            <template if:false={formSubmitted}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_3-of-12">
+                  
+                      <p style="padding-top: 5px; font-size: 14px;">
+                    Was this article helpful?</p>
+                 
+                </div>
+                <div class="slds-col slds-size_2-of-12 ">
+                  <span >
+                        <lightning-button-icon-stateful  icon-name="utility:like" selected={likeState} onclick={handleLikeButtonClick} alternative-text="Like"></lightning-button-icon-stateful>
+                        <lightning-button-icon-stateful  icon-name="utility:dislike" selected={disLikeState} onclick={handleDisLikeButtonClick} alternative-text="Answer" class="slds-m-left_small"></lightning-button-icon-stateful>
+                  </span>
+                </div>
+                <template if:true={showfeedbackInput}>
+                    <div class="slds-col slds-size_5-of-12">
+
+                    <input type="text" class="slds-input" onchange={feedbackTextChangeHandler} placeholder="Your feedback please (Optional)"/>
+    
+                    </div>
+                    <div class="slds-col slds-size_2-of-12" >
+                        <span>
+                            <lightning-button variant="brand" label="Submit" title="Primary action" onclick={handleSave} class="slds-m-left_x-small"></lightning-button>
+                        </span>
+                    </div>
+                </template>
+              </div>   
+             </template> 
+             <template if:true={formSubmitted}>
+                <p style="text-align: center; font-size: 14px;">
+                Thank you for your feedback!
+                </p>
+             </template>
+        </div>      
+</template>

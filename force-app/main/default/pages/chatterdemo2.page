@@ -1,0 +1,32 @@
+<apex:page controller="aaPage47">
+     <body>
+    <apex:form id="TheForm">
+        <!-- Action Function -->
+        <apex:actionFunction name="AJAXRefresh" action="{!Dummy}" rerender="TheForm"/>
+        <apex:selectList value="{!MyValue1}" onchange="AJAXRefresh();" >
+            <apex:selectOption itemValue="Uno" />
+            <apex:selectOption itemValue="Dos" />
+            <apex:selectOption itemValue="Tres" />
+        </apex:selectList>
+        
+        <!-- ActionSupport -->
+        <apex:selectList value="{!MyValue2}" >
+            <apex:selectOption itemValue="Uno" />
+            <apex:selectOption itemValue="Dos" />
+            <apex:selectOption itemValue="Tres" />
+            <apex:actionSupport event="onchange" action="{!Dummy}" rerender="TheForm"  />
+        </apex:selectList>
+        <p />
+        <table>
+            <tr>
+                <th>Value1:</th>
+                {!MyValue1}
+            </tr>
+            <tr>
+                <th>Value2:</th>
+                <td><apex:actionStatus id="myStatus2" startText="Please Wait..." StopText="{!MyValue2}" /></td>
+            </tr>
+        </table>
+    </apex:form>
+    </body>
+</apex:page>

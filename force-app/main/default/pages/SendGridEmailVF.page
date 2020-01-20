@@ -1,0 +1,19 @@
+<apex:page sidebar="false" showHeader="false" standardController="Contact" extensions="SymbolGridEmailController">
+    <apex:form >
+       <fieldset>
+         <legend>
+             send Mail
+           </legend>  
+        
+        <apex:pageMessages id="err"></apex:pageMessages>
+    <apex:outputLabel >Contact's Email	  : </apex:outputLabel>
+    <apex:outputField value="{!con.email}"/><br/><br/>
+    <apex:outputLabel >Email Subject			: </apex:outputLabel>
+        <apex:inputText value="{!emailSubject}"/><br/><br/>
+    <apex:outputLabel >Email body Content	: </apex:outputLabel>
+    <apex:inputTextarea value="{!emailBodyTxt}"/><br/><br/>
+    
+    <apex:commandButton value="senMail" action="{!sendMail}" />
+           </fieldset>
+    </apex:form>
+</apex:page>

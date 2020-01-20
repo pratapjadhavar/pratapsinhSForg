@@ -1,0 +1,17 @@
+<apex:page standardController="Account" extensions="myControllerExtension">
+    {!greeting} <p/>
+    
+    
+    
+  <apex:form >
+   
+        <!--THIS PAGE ID USED FOR FCU REJECT -->
+
+        <apex:inputField value="{!account.name}"/> <p/>
+        <apex:commandButton value="Save" action="{!save}"/>
+        
+        
+        
+        
+    </apex:form>
+</apex:page>

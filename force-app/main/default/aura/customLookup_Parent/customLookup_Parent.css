@@ -1,0 +1,25 @@
+.THIS.visibilityNO {
+ display:none;
+  
+}
+.THIS.visibilityNONE {
+ display:none;
+  
+}
+.THIS .forceStyle 
+.THIS.viewport 
+.THIS.oneHeader {z-index:0; }
+.THIS.slds-global-header_container {position: static;} 
+.THIS.forceStyle.desktop.viewport{overflow:hidden}
+ 
+.THIS .slds-modal{
+ background-color: rgba(0, 0, 0, 0.4); 
+}
+ 
+ 
+ 
+.THIS .slds-modal__header{
+ padding-top: 30px;
+ padding-bottom: 0px;
+ border-bottom: none;
+}

@@ -1,0 +1,54 @@
+<apex:page controller="passengerInfoCntr" showHeader="false" sidebar="false">
+<apex:sectionHeader title="Search Passenger Details"/>
+<apex:form >
+<apex:pageBlock title="Passenger's Information">
+ 
+ <apex:pageBlockSection title="Search By">
+      <apex:inputText value="{!input}" id="inputid" label="Enter Input"/>
+     
+      <apex:commandButton value="Search" action="{!searchPassenger}"/> <apex:actionSupport event="onclick"/>
+      <apex:selectList value="{!AgentId}" label="Search by" multiselect="false" size="1">
+        <apex:selectOptions value="{!SelectedSearchby}" />
+            <!--<apex:actionSupport event="onchange" action="{!sortpassenger}"/>-->
+      </apex:selectList>
+</apex:pageBlockSection>
+  </apex:pageBlock>
+<apex:pageBlock id="tbl" title="Searched Results" rendered="{!IF(leadpassengerL!=null,true,false)}">
+<apex:variable value="{!0}" var="i"/>
+ 
+      <apex:pageBlockTable value="{!leadpassengerL}" var="lpsg" rendered="{!IF(leadpassengerL!='null',true,false)}">
+            <apex:column >
+             <apex:facet name="header">Pessenger Name</apex:facet>
+            <apex:outputText value="{!lpsg.Name__c}"></apex:outputText>
+            </apex:column>
+            <apex:column >
+              <apex:facet name="header">Mail Id</apex:facet>
+            <apex:outputText value="{!lpsg.Email__c}"></apex:outputText>
+            </apex:column>
+            <apex:column >
+              <apex:facet name="header">Age</apex:facet>
+            <apex:outputText value="{!lpsg.Age__c}"></apex:outputText>
+            </apex:column>
+            <apex:column >
+               <apex:facet name="header"> Gender</apex:facet>
+            <apex:outputText value="{!lpsg.Gender__c}"></apex:outputText>
+            </apex:column>
+           
+            <apex:column >
+            <apex:facet name="header">Guest Info</apex:facet>
+           
+            <apex:dataTable value="{!lpsg.Guest_Passenger__r}" var="gpsg">
+                   <apex:column value="{!gpsg.Name__c}"></apex:column>
+                   <apex:column value="{!gpsg.Age__c}"></apex:column>
+                   <apex:column value="{!gpsg.Gender__c}"></apex:column>
+               </apex:dataTable>
+                {!guestpassengerL[i].Name__c}
+               <apex:variable value="{!i+1}" var="i"/>
+            </apex:column>
+      </apex:pageBlockTable>
+ 
+ </apex:pageBlock>
+ 
+ 
+</apex:form>
+</apex:page>

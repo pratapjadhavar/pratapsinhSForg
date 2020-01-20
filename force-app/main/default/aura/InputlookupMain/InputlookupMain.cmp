@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" controller="ParentInputLookup">
+   
+    <!--<aura:handler name="init" value="{!this}" action="{!c.doSearchContact}" access="public"/>-->
+    <aura:attribute name="users" type="User" default="{'sobjectType':'User'}"/>
+    <aura:attribute name="contacts" type="Contact" default="{'sobjectType':'Contact'}"/>
+     <aura:handler name="init" value="{!this}" action="{!c.doSearchUser}" access="public"/>
+    <lightning:card>
+        <c:Inputlookup label="Users" value="{!v.users.id}" sObjectType="User"/>
+    </lightning:card>
+    <!--<c:InputLookup label="contacts" value="{!v.contacts.id}" sObjectType="Contact"/>-->
+</aura:component>

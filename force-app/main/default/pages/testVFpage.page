@@ -1,0 +1,24 @@
+<apex:page showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" >
+     
+     <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <title>Appointment confirmation Form</title>
+            
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <!-- Import the Design System style sheet -->
+            <apex:slds />
+        </head>
+        <style>
+         </style>
+         <body>
+              <div class="slds-scope">
+                   <div class="myapp">
+                   <img src="https://homepages.cae.wisc.edu/~ece533/images/monarch.png" height="60" width="100%"/>  
+                  </div>
+             </div>
+         </body>
+         
+    </html>
+</apex:page>

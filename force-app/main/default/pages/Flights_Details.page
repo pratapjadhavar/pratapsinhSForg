@@ -1,0 +1,71 @@
+<apex:page docType="html-5.0" tabStyle="Campaign"  showHeader="false" sidebar="false" standardController="Scheduled_Flights__c" extensions="Flight_details_Controller">
+
+<h1><b><apex:sectionHeader title="Search Your Flight"/></b></h1>
+<body style="background-image:url(http://gbaa.org/wp-content/uploads/2014/08/airplane.jpg)">
+<apex:form style="background-image:url(http://gbaa.org/wp-content/uploads/2014/08/airplane.jpg)">
+<apex:pageBlock id="note">
+<apex:pagemessages escape="false"></apex:pagemessages> 
+    <apex:pageBlockSection title="Search Flight" columns="1">
+             <apex:selectList value="{!from_data}" label="From"  multiselect="false" size="1">
+                   <apex:selectOptions value="{!from_city}" />   
+             </apex:selectList>
+             <apex:selectList value="{!to_data}" label="To"  multiselect="false" size="1">
+                   <apex:selectOptions value="{!to}" />   
+             </apex:selectList>
+             <apex:inputCheckbox label="Round Trip" value="{!retjer}">
+              <apex:actionSupport event="onclick" reRender="note"/>
+             </apex:inputCheckBox>
+             <apex:input label="Journey Date" type="date" value="{!dateValue}" />
+             <apex:input label="Return Journey Date" type="date" value="{!dateValue2}" rendered="{!IF(retjer==true,'True','False')}"/>                          
+           <div align="center" draggable="false" >
+             <apex:commandButton value="search" action="{!searchFlights}"/> 
+             </div>    
+    </apex:pageBlockSection>
+        
+    <apex:pageBlockSection title="One Way Flights" rendered="{!IF(flight_list.size!=null, true, false)}" >
+         <apex:pageBlockTable value="{!flight_list}" var="ff"  title="One Way">           
+            <apex:column headervalue="Select Flight">
+                 <input type="radio"  name="{!dsp}" value="{!ff.id}" onclick="aaa('{!ff.id}');"/>
+             </apex:column>
+             <apex:column value="{!ff.Flight__c}"/>
+             <apex:column value="{!ff.From__c}"/>
+             <apex:column value="{!ff.To__c }"/>
+             <apex:column value="{!ff.Departure__c}"/>
+              <apex:column value="{!ff.Time_of_Departure__c}"/>
+
+             <apex:column value="{!ff.Remaining_Seats__c}"/>         
+         </apex:pageBlockTable>
+    </apex:pageBlockSection>
+    
+    <apex:actionfunction action="{!selectF}" name="aaa" rerender="note2">
+                <apex:param name="flid" value="" assignTo="{!selectF}"/ >
+    </apex:actionFUnction>
+    
+    
+     <apex:pageBlockSection title="Return Flights" rendered="{!IF(flight_list2.size!=null, true, false)}" >
+         <apex:pageBlockTable value="{!flight_list2}" var="ff2">
+              <apex:column headervalue="Select Flight">
+                 <input type="radio"  immediate="true" name="dp" value="{!ff2.id}" onclick="aaa2('{!ff2.id}');"/>
+             </apex:column>
+             <apex:column value="{!ff2.Flight__c}"/>
+             <apex:column value="{!ff2.From__c}"/>
+             <apex:column value="{!ff2.To__c }"/>
+             <apex:column value="{!ff2.Departure__c}"/>
+              <apex:column value="{!ff2.Time_of_Departure__c}"/>
+             <apex:column value="{!ff2.Remaining_Seats__c}"/>
+         </apex:pageBlockTable>
+
+    </apex:pageBlockSection>
+    <apex:pageBlockSection rendered="{!IF(flag==true, true, false)}">
+         <apex:commandButton value="Book flight" action="{!bookflight}" />
+    </apex:pageBlockSection>
+    <apex:actionfunction action="{!selectF2}" name="aaa2" rerender="note2">
+             <apex:param name="flid2" value="" assignTo="{!selectF2}"/ >
+    </apex:actionFUnction>
+    
+  
+    
+</apex:pageBlock>
+</apex:form>
+</body>
+</apex:page>

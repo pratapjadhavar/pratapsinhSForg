@@ -1,0 +1,200 @@
+<!--
+/**
+* Password Reset UI.
+* <p /><p />
+* @author Ramesh Guguloth
+*/
+-->
+<apex:page showHeader="false" controller="SLDSVFController" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <style>
+.msgIcon {
+    display: none!important
+}
+.customMessage * {
+    color: #fff!important
+}
+.customMessage {
+    margin: 5px 0!important;
+    max-width: 1280px;
+    opacity: 1!important;
+    width: 100%;
+    font-size: 12px;
+    border: 0px;
+    padding-left: 10px;
+}
+.message {
+    opacity: .1
+}
+</style>
+        
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <title>Reset Password</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <!-- Import the Design System style sheet -->
+            <apex:slds />
+        </head>
+        <script>
+    $(document).ready(function(){
+       overridePageMessages();    
+    });
+         
+    function overridePageMessages(){    
+        var textureEffect = '';
+        //Uncomment below line for texture effect on page messages
+        //textureEffect = 'slds-theme--alert-texture';
+                      
+        $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage '+textureEffect);          
+        $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage '+textureEffect);    
+        $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage '+textureEffect);                  
+        $('.infoM3').addClass('slds-notify slds-notify--toast customMessage '+textureEffect);    
+                          
+        $('.errorM3').removeClass('errorM3'); 
+        $('.confirmM3').removeClass('confirmM3'); 
+        $('.infoM3').removeClass('infoM3');   
+        $('.warningM3').removeClass('warningM3');  
+    }
+</script>
+        <body>
+            <div class="slds-scope slds-align_absolute-center">
+                <div class="slds-col slds-p-left--large slds-size--8-of-12">
+                    <article class="slds-card ">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container slds-icon-utility-reset_password" >
+                                        <svg aria-hidden="true" class="slds-icon slds-icon-text-default">
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                 xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#reset_password">
+                                            </use>
+                                        </svg>
+                                        <span class="slds-assistive-text">Reset Password</span>
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <span>Password Reset</span>
+                                    </h2>
+                                </div>
+                                <button onclick="window.location.reload(true)" class="slds-button modal-right-button slds-button_icon-border" title="refresh" data-aura-rendered-by="1055:0">
+                                    <lightning-primitive-icon data-aura-rendered-by="1056:0" lightning-primitive-icon_primitive-icon-host=""><svg focusable="false" data-key="refresh" aria-hidden="true" class="slds-button__icon" lightning-primitive-icon_primitive-icon="">
+                                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.18.0#refresh" lightning-primitive-icon_primitive-icon=""></use>
+                                        </svg></lightning-primitive-icon>
+                                    <span class="slds-assistive-text" data-aura-rendered-by="1058:0">refresh</span>
+                                </button>
+                                
+                                
+                            </header>
+                        </div>
+                        <!-- ERROR ALERT DIV -->
+<apex:outputPanel layout="block" id="msg_block" style="display: none;">
+    <div id="err_wrapper"
+         class="slds-notify slds-notify--alert slds-theme--{!alertType} slds-theme--alert-texture"
+         role="alert">
+        <h2>
+            <div xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <svg aria-hidden="true"
+                     class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small">
+                    <use xlink:href="/apexpages/slds/assets/icons/utility-sprite/svg/symbols.svg#' + {!if(alertType = 'success','check','ban')}"></use>
+                </svg>
+                <span id="err_text"></span>
+            </div>
+        </h2>
+    </div>
+ 
+</apex:outputPanel>
+                        <br/>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <apex:form >
+                                <div class="slds-form-element">
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col slds-size_2-of-10">
+                                            <label class="slds-form-element__label" for="text-input-id-1">Text</label>
+                                        </div>
+                                        <div class="slds-col slds-size_8-of-10">
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText id="text-input-id-1" styleclass="slds-input" value="{!textVal}" />
+                                            </div>
+                                            <br/>         
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <select class="slds-select" id="select-01" required="">
+                                                        <option value="">select alternate number</option>
+                                                        <option>(555) 555-1234</option>
+                                                        <option>(555) 555-1235</option>
+                                                        <option>(555) 555-1236</option>
+                                                        <option>Add New Number</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <p style="text-align: right;">
+                                            <label class="slds-checkbox">
+                                                <input type="checkbox" id="overideTextMethod" styleclass="slds-input"/>
+                                                <span class="slds-form-element__label">Override Preferred Contact Method</span>
+                                                <span class="slds-checkbox--faux"></span>
+                                                
+                                            </label>
+                                            </p>
+                                            <br/>
+                                            <p align="right">
+                                                <button  class="slds-button slds-button_brand">Save and Send</button>
+                                            </p>
+                                            <br/>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-10">
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    <!--Email fields-->
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col slds-size_2-of-10">    
+                                            <label class="slds-form-element__label" for="text-input-id-1">Email Address</label></div>
+                                        <div class="slds-col slds-size_8-of-10">
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText id="email-input-id" styleclass="slds-input" value="{!emailVal}" />
+                                            </div>
+                                            <br/>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <select class="slds-select" id="select-01" required="">
+                                                        <option value="">select alternate Email</option>
+                                                        <option>abc@xyz.com</option>
+                                                        <option>Add New Email</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <p style="text-align: right;">
+                                                <label class="slds-checkbox">
+                                                    <apex:inputcheckbox id="overideEmailMethod" styleclass="slds-input" value="{!overideEmailMethod}" />
+                                                    <span class="slds-form-element__label">Override Preferred Contact Method</span>
+                                                    <span class="slds-checkbox--faux"></span>
+                                                    
+                                                </label>
+                                            </p>
+                                            <br/>
+                                            <p align="right">
+                                                <button  class="slds-button slds-button_brand">Save and Send</button>
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-10">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </apex:form>
+                        </div>
+                        <footer class="slds-card__footer"></footer>
+                    </article>
+                </div>
+            </div>
+        </body>
+        <script> 
+        
+        </script>
+    </html>
+</apex:page>

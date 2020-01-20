@@ -1,0 +1,109 @@
+<aura:component controller="lookUpController" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+ 
+<!--Including lightning design system library-->
+<ltng:require styles="/resource/SLDS222/assets/styles/salesforce-lightning-design-system.css" />
+ 
+<!--declare attributes-->
+<aura:attribute name="selectedRecord" type="Contact" default="{}" description="Use,for store SELECTED sObject Record"/>
+<aura:attribute name="listOfSearchRecords" type="Contact[]" description="Use,for store the list of search records which returns from apex class"/>
+<aura:attribute name="SearchKeyWord" type="string"/>
+<aura:attribute name="Message" type="String" default="Search Result.."/>
+<aura:attribute name="SearchedResult" type="Contact[]"/>
+<aura:attribute name="Dropdownlist" type="Boolean" default="true"/>
+ 
+<!--For applying CSS to/(Fixing the position of) Modal-Popup-->
+<aura:attribute name="cssStyle" type="String" />
+ 
+<!--For Hiding and showing the Spinner
+<aura:attribute name="Showspinner" type="Boolean" default='true'/> -->
+ 
+<!--declare events hendlers-->
+<aura:handler name="oSelectedContactEvent" event="c:selectedContactEvent" action="{!c.handleComponentEvent}"/>
+<aura:handler name="myEvent" event="c:selectedContactEvent" action="{!c.GetSelectedCont}" />
+ 
+<aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+<aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+ 
+ 
+<!-- https://www.lightningdesignsystem.com/components/lookups/ -->
+<div class="slds-m-around--large ">
+<div aura:id="searchRes" class="slds-form-element slds-lookup slds-is-close" data-select="single">
+<label class="slds-form-element__label" for="lookup-348"> Contact Name </label>
+<!--This part is for display search bar for lookup-->
+<div class="slds-form-element__control">
+<div class="slds-input-has-icon slds-input-has-icon--right">
+<div onclick="{!c.SearchContact}">
+<c:svg class="slds-input__icon slds-icon--large slds-show " xlinkHref="/resource/SLDS222/assets/icons/utility-sprite/svg/symbols.svg#search"/>
+</div>
+<!-- This markup is for when an record is selected -->
+<div aura:id="lookup-pill" class="slds-pill-container slds-hide">
+<span class="slds-pill">
+<span class="slds-pill__label">
+{!v.selectedRecord.Name}
+</span>
+<!--Button to remove the selection-->
+<button class="slds-button slds-button--icon slds-pill__remove" onclick="{!c.clear}">
+<c:svg class="slds-button__icon" xlinkHref="/resource/SLDS222/assets/icons/utility-sprite/svg/symbols.svg#close"/>
+<span class="slds-assistive-text">Remove</span>
+</button>
+</span>
+</div >
+<div aura:id = "lookupField" class = "slds-grid">
+<div style="width:100%">
+<ui:inputText updateOn="keyup" keyup="{!c.keyPressController}" class="slds-lookup__search-input slds-input" value="{!v.SearchKeyWord}" placeholder="search contact.." >
+</ui:inputText>
+</div>
+</div>
+</div>
+</div>
+<!--This part is for Display typehead lookup result List-->
+<div class="slds-lookup__menu slds" aura:id ="lookupmenu">
+<div class="slds-lookup__item--label slds-text-body--small">{!v.Message}</div>
+<center> <ui:spinner aura:id="spinner"/> </center>
+<ul class="slds-lookup__list" role="listbox">
+<aura:iteration items="{!v.listOfSearchRecords}" var="singleRec">
+<!--Child Component for showing the searched result-->
+<c:cutomLookupResult_Child1 oContact="{!singleRec}" />
+</aura:iteration></ul>
+</div>
+</div>
+</div>
+&nbsp;
+ 
+<!-- Moadal Popup for showing the search window on press of lookup icon -->
+<div role="dialog" tabindex="-1" aura:id="ContactLookup" class="slds-modal slds-fade-in-open visibilityNO">
+<div class="slds-modal__container">
+<div class="slds-modal__header" style="padding-bottom:15px;">
+<button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.HideContactPopup}">
+<c:svg ariaHidden="true" class="slds-button__icon slds-button__icon--large" xlinkHref="/resource/SLDS222/assets/icons/utility-sprite/svg/symbols.svg#close"></c:svg>
+<span class="slds-assistive-text">Close</span>
+</button>
+<ui:inputText updateOn="keyup" change="{!c.keyPressController}" class="slds-lookup__search-input slds-input" value="{!v.SearchKeyWord}" placeholder="search contact.." />
+ 
+</div>
+<div class="slds-modal__content slds-p-around--medium">
+<div class="slds-lookup__item--label slds-text-body--small">{!v.Message}</div>
+<table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table_fixed-layout">
+<thead>
+<tr class="slds-text-heading--label">
+<th scope="col"><span class="slds-truncate">Contact Name</span></th>
+<th scope="col"><span class="slds-truncate">Account Name</span></th>
+<th scope="col"><span class="slds-truncate">Email</span></th>
+<th scope="col"><span class="slds-truncate">Phone</span></th>
+</tr>
+</thead>
+<tbody>
+ 
+<!--Child component for showing the searched result -->
+<aura:iteration items="{!v.SearchedResult}" var="obj">
+<c:cutomLookupResult_Child2 con="{!obj}" />
+</aura:iteration></tbody>
+</table>
+</div>
+<div class="slds-modal__footer">
+<ui:button label="Cancel" class="slds-button slds-button--brand" labelClass="label" press="{!c.HideContactPopup}" />
+</div>
+</div>
+</div>
+<div class="slds-backdrop slds-backdrop--open visibilityNO" aura:id="popUpBackgroundId1"></div>
+</aura:component>

@@ -1,0 +1,26 @@
+<aura:component controller="CampingListController">
+    <aura:attribute name="items" type="Camping_Item__c[]" />
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:handler name="addItem" event="c:addItemEvent" action="{!c.handleAddItem}" />
+    <c:campingHeader />
+
+    <!--input Form -->
+    <c:campingListForm />
+        <!-- / input FORM -->
+
+    <div class="slds-card slds-p-top--medium">
+        <header class="slds-card__header">
+            <h3 class="slds-text-heading--small">camping items</h3>
+        </header>
+
+        <section class="slds-card__body">
+            <div id="list" class="row">
+                <aura:iteration items="{!v.items}" var="it">
+                    <c:campingListItem item="{!it}" />
+                </aura:iteration>
+            </div>
+        </section>
+    </div>
+
+</aura:component>

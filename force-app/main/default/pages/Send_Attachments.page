@@ -1,0 +1,42 @@
+<apex:page standardController="Scheduled_Flights__c" extensions="AttachmentCntr">
+<apex:pageBlock >
+
+<apex:pageBlockSection >
+    <apex:pageBlockSectionItem >
+     Source  :<apex:outputtext value="{!flight1.From__c}"/>
+    </apex:pageBlockSectionItem>
+    <apex:pageBlockSectionItem >
+      Destination:  <apex:outputtext value="{!flight1.To__c}"/>
+    </apex:pageBlockSectionItem> 
+        <apex:pageBlockSectionItem >
+      Time Of Departure:  <apex:outputtext value="{!flight1.Departure__c}"/>
+    </apex:pageBlockSectionItem> 
+    
+   
+    
+</apex:pageBlockSection>   
+  </apex:pageBlock>  
+ <apex:form >
+<apex:pageblock >
+<apex:pageBlockTable value="{!attach}" var="att">
+
+    <apex:column > 
+     <apex:facet name="header">Check</apex:facet>
+         <apex:inputCheckbox value="{!attchmentMap[att.id]}" id="checkedone"> 
+        
+            </apex:inputCheckbox>
+            </apex:column> 
+
+         <apex:column >
+     <apex:facet name="header">Attachment Name</apex:facet>
+        <apex:outputText value="{!att.Name}"></apex:outputText>
+
+       </apex:column>
+
+</apex:pageBlockTable>
+<apex:commandButton value="Ok" action="{!attchfile}"/>
+
+ </apex:pageblock>
+
+</apex:form>
+</apex:page>
