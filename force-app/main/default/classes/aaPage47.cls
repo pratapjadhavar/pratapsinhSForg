@@ -4,5 +4,5 @@ public class aaPage47 {
     public account aa{set;get;}
     public aaPage47(){
         aa=[select id, name from account limit 1];
-    }
+    } 
 }
